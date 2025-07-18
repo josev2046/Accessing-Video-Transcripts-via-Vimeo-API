@@ -74,3 +74,62 @@ curl -X GET \
   "[https://api.vimeo.com/videos/](https://api.vimeo.com/videos/){VIDEO_ID}/transcripts/{TEXTTRACK_ID_EN}"
 ```
 
+### Example Response (Excerpt for clarity):
+```JSON
+{
+    "total": 71,
+    "data": [
+        {
+            "id": "072f5965-d9b3-4047-86c8-d6a2021388cd#242248428#79",
+            "cue_start": 79,
+            "cue_end": 4370,
+            "lines": [
+                {
+                    "text": "El siglo veintiuno ha transformado",
+                    "voice": null
+                },
+                {
+                    "text": "fundamentalmente la práctica",
+                    "voice": null
+                }
+            ],
+            "language": "es-x-autogen"
+        },
+        {
+            "id": "072f5965-d9b3-4047-86c8-d6a2021388cd#242248428#4370",
+            "cue_start": 4370,
+            "cue_end": 9424,
+            "lines": [
+                {
+                    "text": "archivística. Los archivistas ya no son",
+                    "voice": null
+                },
+                {
+                    "text": "únicamente custodios de artefactos",
+                    "voice": null
+                }
+            ],
+            "language": "es-x-autogen"
+        },
+        {
+            "id": "072f5965-d9b3-4047-86c8-d6a2021388cd#242248428#9424",
+            "cue_start": 9424,
+            "cue_end": 14339,
+            "lines": [
+                {
+                    "text": "tangibles, sino que deben navegar un",
+                    "voice": null
+                },
+                {
+                    "text": "ecosistema de información complejo,",
+                    "voice": null
+                }
+            ],
+            "language": "es-x-autogen"
+        }
+            # ... additional lines omitted for brevity
+    ]
+}
+
+```
+
