@@ -1,0 +1,48 @@
+@startuml
+
+
+title Vimeo Transcript Retrieval Workflow
+
+actor "Developer/Client Application" as ClientApp
+participant "Vimeo API Gateway" as VimeoAPI
+database "Vimeo Backend Services" as VimeoBackend
+collections "Vimeo Text Tracks Storage" as TextTracksDB
+
+autonumber
+
+ClientApp -> VimeoAPI: GET /videos/{VIDEO_ID}/texttracks?include_transcript=true
+note right: Request all text tracks for a video,\nincluding transcript-specific info.
+activate VimeoAPI
+VimeoAPI -> VimeoBackend: Query video text tracks
+activate VimeoBackend
+VimeoBackend -> TextTracksDB: Retrieve available text tracks
+activate TextTracksDB
+TextTracksDB --> VimeoBackend: Text track data (e.g., IDs, languages, types, provenance)
+deactivate TextTracksDB
+VimeoBackend --> VimeoAPI: Text track list
+deactivate VimeoBackend
+VimeoAPI --> ClientApp: JSON Response (List of Text Tracks)
+deactivate VimeoAPI
+note left: Response contains 'id', 'language', 'type',\n'display_language', 'provenance' for each track.
+
+ClientApp -> ClientApp: Parse JSON response to identify desired transcript ID
+note left: Developer logic to select transcript,\ne.g., by language "en-x-autogen" and provenance "autogen_source_audio".
+ClientApp -> VimeoAPI: GET /videos/{VIDEO_ID}/transcripts/{TEXTTRACK_ID}
+note right: Request the content of the specific transcript track.
+activate VimeoAPI
+VimeoAPI -> VimeoBackend: Retrieve transcript content
+activate VimeoBackend
+VimeoBackend -> TextTracksDB: Fetch WebVTT file data
+activate TextTracksDB
+TextTracksDB --> VimeoBackend: WebVTT content
+deactivate TextTracksDB
+VimeoBackend --> VimeoAPI: WebVTT content
+deactivate VimeoBackend
+VimeoAPI --> ClientApp: WebVTT file content
+deactivate VimeoAPI
+note left: Response is the raw WebVTT text, including timestamps.
+
+ClientApp -> ClientApp: Parse WebVTT to extract plain text transcript
+note left: Remove timecodes, cues, and other WebVTT markup.\nConcatenate text segments.
+
+@enduml
