@@ -1,5 +1,7 @@
 # Accessing Video Transcripts via Vimeo API
 
+[![DOI](https://zenodo.org/badge/1022289892.svg)](https://doi.org/10.5281/zenodo.16113457)
+
 The `include_transcript=true` parameter provides comprehensive details, enabling the identification of auto-generated or specific transcript tracks.
 
 <img width="1695" height="722" alt="image" src="https://github.com/user-attachments/assets/ff67dc96-ff8f-4e2f-a8d7-7d4e18b169bb" />
