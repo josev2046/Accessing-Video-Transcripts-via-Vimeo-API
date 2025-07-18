@@ -17,7 +17,7 @@ curl -X GET \
   -H "Accept: application/vnd.vimeo.*+json;version=3.4" \
   "[https://api.vimeo.com/videos/](https://api.vimeo.com/videos/){VIDEO_ID}/texttracks?include_transcript=true"
 ```
-### Example Response (Excerpt for clarity):
+### Example Response (Excerpt):
 
 Upon successful execution, a `JSON` response detailing available text tracks will be returned. This example highlights auto-generated subtitle tracks in various languages, including English, which would serve as the transcript.
 
@@ -74,7 +74,7 @@ curl -X GET \
   "[https://api.vimeo.com/videos/](https://api.vimeo.com/videos/){VIDEO_ID}/transcripts/{TEXTTRACK_ID_EN}"
 ```
 
-### Example Response (Excerpt for clarity):
+### Example Response (Excerpt):
 ```JSON
 {
     "total": 71,
